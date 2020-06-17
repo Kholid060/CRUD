@@ -1,0 +1,19 @@
+body, html {
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+}
+
+.card{
+	min-height: 200px;
+}
+
+.modal{
+	z-index: 0;
+	background-color: #0000002e;
+}
+
+.modal .card{
+	z-index: 1;
+	min-width: 300px;
+	max-width: 600px;
+}

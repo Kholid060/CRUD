@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My awesome website</title>
+	<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+	<link href="./css/style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<div id="app">
+	<div class="bg-gray-100 h-screen text-gray-700">
+		<div class="content px-6 py-2 flex flex-col items-center py-10">
+			<form class="mb-8" @submit.prevent="addProduct">
+				<input 
+					v-for="field in fields"
+					:key="field.key"
+					:type="field.type || 'text'"
+					v-model="tempProduct[field.key]"
+					class="px-6 py-3 rounded-lg mr-5" 
+					:placeholder="field.name"
+				>
+				<button class="py-3 px-6 bg-blue-400 rounded-lg text-white">
+					Tambah produk
+				</button>
+			</form>
+			<div class="card bg-white mt-8 shadow rounded sm:w-full md:w-10/12">
+				<table class="table-auto w-full">
+				  <thead class="bg-blue-400 text-white">
+				    <tr>
+				      <th
+				      	class="p-4 font-medium capitalize" 
+				      	v-for="item in tableHeaders" 
+				      	:key="item"
+				      >
+				      	{{ item }}
+				      </th>
+				      <th></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr v-for="product in products" class="bg-gray-100">
+				      <td class="border p-4 font-medium capitalize">{{product.nama_produk}}</td>
+				      <td class="border p-4 capitalize">{{product.keterangan}}</td>
+				      <td class="border p-4 text-center">Rp. {{product.harga}}</td>
+				      <td class="border p-4 text-center capitalize">{{product.jumlah}}</td>
+				      <td class="border p-4 text-center">
+				      	<i 
+				      		class="material-icons fill-current text-green-400 p-2 mr-2 hover:bg-green-200 rounded-full cursor-pointer" 
+				      	>edit</i>
+				      	<i 
+				      		class="material-icons fill-current text-red-400 p-2 hover:bg-red-200 rounded-full cursor-pointer" 
+				      		@click="deleteProduct(product.id)"
+				      	>delete</i>
+				      </td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="./js/index.js"></script>
+</body>
+</html>
